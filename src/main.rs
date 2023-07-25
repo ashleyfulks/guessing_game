@@ -62,17 +62,41 @@ fn main() {
     clear_console();
     display_ascii_art();
     let secret_number = rand::thread_rng().gen_range(1, 101);
-
-    // println!("The secret number is: {}", secret_number);
-
     let mut loop_count: u8 = 0;
 
     loop {
 
+        // fn play_again() {
+        //     let mut play_again: String = String::new();
+        //     println!("Would you like to play again? (y/n)");
+        //     io::stdin().read_line(&mut play_again)
+        //         .expect("Failed to read line");
+        //     if play_again.trim() == "y" {
+        //         loop_count = 0;
+        //         clear_console();
+        //         display_ascii_art();
+        //         main();
+        //     } else {
+        //         println!("Thanks for playing!");
+        //         break;
+        //     }
+        // }
+
         if loop_count == 10 {
             display_ascii_art_you_lose();
             println!("{}","You took too many guesses.".red());
-            break;
+            println!("Would you like to play again? (y/n)");
+            let mut play_again: String = String::new();
+            io::stdin().read_line(&mut play_again)
+                .expect("Failed to read line");
+            if play_again.trim() == "y" {
+                loop_count = 0;
+                clear_console();
+                display_ascii_art();
+                continue;
+            } else {
+                break;
+            }
         }
 
         if loop_count >= 1 {
@@ -84,6 +108,7 @@ fn main() {
         println!("");
 
         let mut guess = String::new();
+        let mut play_again: String = String::new();
     
         io::stdin().read_line(&mut guess)
             .expect("Failed to read line");
@@ -103,7 +128,18 @@ fn main() {
 
         if guess == secret_number {
             println!("You took {} tries.", loop_count);
-            break;
+            println!("Would you like to play again? (y/n)");
+            io::stdin().read_line(&mut play_again)
+                .expect("Failed to read line");
+            if play_again.trim() == "y" {
+                loop_count = 0;
+                clear_console();
+                display_ascii_art();
+                continue;
+            } else {
+                break;
+            }
+            
         }
         loop_count = loop_count + 1;
     }

@@ -24,6 +24,8 @@ fn display_ascii_art() {
     ██║░░╚██╗██║░░░██║██╔══╝░░░╚═══██╗░╚═══██╗██║██║╚████║██║░░╚██╗  ██║░░╚██╗██╔══██║██║╚██╔╝██║██╔══╝░░
     ╚██████╔╝╚██████╔╝███████╗██████╔╝██████╔╝██║██║░╚███║╚██████╔╝  ╚██████╔╝██║░░██║██║░╚═╝░██║███████╗
     ░╚═════╝░░╚═════╝░╚══════╝╚═════╝░╚═════╝░╚═╝╚═╝░░╚══╝░╚═════╝░  ░╚═════╝░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚══════╝
+    
+    Written by Ashley Fulks 2023
     "#;
 
     println!("{}", ascii_art.bright_green());
@@ -65,28 +67,11 @@ fn main() {
     let mut loop_count: u8 = 0;
 
     loop {
-
-        // fn play_again() {
-        //     let mut play_again: String = String::new();
-        //     println!("Would you like to play again? (y/n)");
-        //     io::stdin().read_line(&mut play_again)
-        //         .expect("Failed to read line");
-        //     if play_again.trim() == "y" {
-        //         loop_count = 0;
-        //         clear_console();
-        //         display_ascii_art();
-        //         main();
-        //     } else {
-        //         println!("Thanks for playing!");
-        //         break;
-        //     }
-        // }
-
         if loop_count == 10 {
             display_ascii_art_you_lose();
             println!("{}","You took too many guesses.".red());
             println!("Would you like to play again? (y/n)");
-            let mut play_again: String = String::new();
+            let mut play_again = String::new();
             io::stdin().read_line(&mut play_again)
                 .expect("Failed to read line");
             if play_again.trim() == "y" {
